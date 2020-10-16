@@ -23,9 +23,21 @@ Route::group([
 
 Route::get('/', 'AuthController@index');
 
-Route::get('/room', 'RoomController@index');
+Route::group([
+    // 'middleware' => 'api',
+    'prefix' => 'room'
+], function() {
+    Route::get('/index', 'RoomController@index');
+    Route::get('/get-data', 'RoomController@roomData');
+});
 
-Route::get('/booking', 'BookingRoomController@index');
+Route::group([
+    // 'middleware' => 'api',
+    'prefix' => 'booking'
+], function() {
+    Route::get('/index', 'BookingRoomController@index');
+    Route::get('/get-data', 'BookingRoomController@bookingData');
+});
 
 Route::get('/admin', 'AdminController@index')->name('admin')->middleware('is_admin');
 Route::get('/user', 'BookingRoomController@index')->name('user')->middleware('is_admin');

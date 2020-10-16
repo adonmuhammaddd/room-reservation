@@ -11,6 +11,9 @@
 
     
 @include('template.sidebar')
+<script type="text/javascript">
+    var base_url = {!! json_encode(url('/')) !!}
+</script>
 
 @yield('content')
 

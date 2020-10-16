@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class HistoryModel extends Model
 {
-    private $table = 'tbl_history';
+    protected $table = 'tbl_history';
 
     protected $fillable = [
         'division',

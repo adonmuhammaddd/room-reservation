@@ -3,7 +3,8 @@
 </div>
 <div class="overlay"></div>
 
-<script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script>
+{{-- <script src="{{ asset('js/jquery-3.3.1.slim.min.js') }}"></script> --}}
+<script src="{{ asset('js/jquery-3.5.1.min.js') }}"></script>
 <script src="{{ asset('js/popper.min.js') }}"></script>
 <script src="{{ asset('bootstrap/bootstrap.min.js') }}"></script>
 <!-- jQuery Custom Scroller CDN -->

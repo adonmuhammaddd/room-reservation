@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\BookingRoomModel;
 
 class BookingRoomController extends Controller
 {
@@ -16,6 +17,18 @@ class BookingRoomController extends Controller
         $title = "Gakkum - Booking Data";
 
         return view('admin/bookingroom/booking-data', compact('title'));
+    }
+
+    public function bookingData()
+    {
+        $bookingData = BookingRoomModel::query()
+            ->where('isDeleted', 0)
+            ->get();
+
+        return response()->json([
+            'message' => 'success',
+            'result' => $bookingData
+        ]);
     }
 
     /**

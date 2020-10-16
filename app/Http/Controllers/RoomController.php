@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\RoomModel;
 
 class RoomController extends Controller
 {
@@ -14,7 +15,20 @@ class RoomController extends Controller
     public function index()
     {
         $title = 'Gakkum - Room Data';
+
         return view('admin/room/room-data', compact('title'));
+    }
+
+    public function roomData()
+    {
+        $roomData = RoomModel::query()
+            ->where('isDeleted', 0)
+            ->get();
+
+        return response()->json([
+            'message' => 'Success',
+            'result' => $roomData
+        ]);
     }
 
     /**

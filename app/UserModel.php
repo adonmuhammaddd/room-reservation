@@ -10,7 +10,7 @@ use Tymon\JWTAuth\Contracts\JWTSubject;
 class UserModel extends Authenticatable implements JWTSubject
 {
     use Notifiable;
-    private $table = 'tbl_user';
+    protected $table = 'tbl_user';
 
     /**
      * The attributes that are mass assignable.

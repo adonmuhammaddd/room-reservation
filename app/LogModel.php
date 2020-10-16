@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class LogModel extends Model
 {
-    private $table = 'tbl_log';
+    protected $table = 'tbl_log';
 
     protected $fillable = [
         'roomName',
