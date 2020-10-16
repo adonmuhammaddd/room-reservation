@@ -32,6 +32,21 @@ class UserModel extends Authenticatable implements JWTSubject
         'isDeleted',
         'token'
     ];
+    
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    /**
+     * Return a key value array, containing any custom claims to be added to the JWT.
+     *
+     * @return array
+     */
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
 
     /**
      * The attributes that should be hidden for arrays.

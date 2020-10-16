@@ -196,7 +196,7 @@
                     <div class="login-form">
                         
                         <form action="{{ url('/auth/login') }}" method="post">
-                            {{ csrf_field() }}
+                            {{-- {{ csrf_field() }} --}}
                             <div class="sign-in-htm">
                                 <div class="group">
                                     <label for="username" class="label">Username</label>
