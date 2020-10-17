@@ -7,10 +7,12 @@ $.ajax({
     dataType: 'json',
     success: function(data)
     {
-        console.log(data)
+        var roomYes = data
+        console.log('roomYes ===>',roomYes)
 
         $("#gridContainer").dxDataGrid({
-            dataSource: data.result,
+            dataSource: roomYes.result,
+            keyExpr: "id",
             showBorders: true,
             paging: {
                 enabled: false
@@ -20,31 +22,11 @@ $.ajax({
                 allowUpdating: true
             },
             columns: [
-                {
-                    dataField: "Prefix",
-                    caption: "Title",
-                    width: 70
-                },
-                "FirstName",    
-                "FirstName",
-                "FirstName",
-                "LastName", {
-                    dataField: "Position",
-                    width: 170
-                }, {
-                    dataField: "BirthDate",
-                    dataType: "date"
-                }, {
-                    dataField: "Notes",
-                    visible: false,
-                    formItem: {
-                        colSpan: 2,
-                        editorType: "dxTextArea",
-                        editorOptions: {
-                            height: 100
-                        }
-                    }
-                }
+                "roomName",
+                "capacity",
+                "description",
+                "color",
+                "isActive"
             ]
         });
     }

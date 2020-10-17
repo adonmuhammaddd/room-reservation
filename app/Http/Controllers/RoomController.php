@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\RoomModel;
 
@@ -29,6 +31,8 @@ class RoomController extends Controller
             'message' => 'Success',
             'result' => $roomData
         ]);
+
+        // return response()->json($roomData);
     }
 
     /**
@@ -36,9 +40,9 @@ class RoomController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+
     }
 
     /**
@@ -49,7 +53,31 @@ class RoomController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'roomName' => 'required|unique|max:255',
+            'capacity' => 'required|numeric',
+            'description' => 'required',
+            'color' => 'required'
+        ]);
+
+        $data = [
+            'roomName' => $request->roomName,
+            'capacity' => $request->capacity,
+            'description' => $request->description,
+            'color' => $request->color
+        ];
+
+        if ($validator->fails())
+        {
+            return redirect()->back()->withErrors($v->errors());
+        }
+        else
+        {
+            return response()->json([
+                'message' => 'success',
+                'result' => $data
+            ]);
+        }
     }
 
     /**
@@ -58,9 +86,9 @@ class RoomController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request, $id)
     {
-        //
+
     }
 
     /**
@@ -83,7 +111,31 @@ class RoomController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $validator = Validator::make($request->all(), [
+            'roomName' => 'required|unique|max:255',
+            'capacity' => 'required|numeric',
+            'description' => 'required',
+            'color' => 'required'
+        ]);
+
+        $data = [
+            'roomName' => $request->roomName,
+            'capacity' => $request->capacity,
+            'description' => $request->description,
+            'color' => $request->color
+        ];
+
+        if ($validator->fails())
+        {
+            return redirect()->back()->withErrors($v->errors());
+        }
+        else
+        {
+            return response()->json([
+                'message' => 'success',
+                'result' => $data
+            ]);
+        }
     }
 
     /**
@@ -94,6 +146,10 @@ class RoomController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $data = RoomModel::find($id);
+        $data->isDeleted = 0;
+        $data->save();
+
+        return response()->json($data);
     }
 }

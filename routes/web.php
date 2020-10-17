@@ -29,6 +29,9 @@ Route::group([
 ], function() {
     Route::get('/index', 'RoomController@index');
     Route::get('/get-data', 'RoomController@roomData');
+    Route::post('/add-data', 'RoomController@store');
+    Route::post('/edit-data/{id}', 'RoomController@update');
+    Route::post('/delete-data/{id}', 'RoomController@destroy');
 });
 
 Route::group([
@@ -37,6 +40,9 @@ Route::group([
 ], function() {
     Route::get('/index', 'BookingRoomController@index');
     Route::get('/get-data', 'BookingRoomController@bookingData');
+    Route::post('/add-data', 'BookingRoomController@store');
+    Route::post('/edit-data/{id}', 'BookingRoomController@update');
+    Route::post('/delete-data/{id}', 'BookingRoomController@destroy');
 });
 
 Route::get('/admin', 'AdminController@index')->name('admin')->middleware('is_admin');
